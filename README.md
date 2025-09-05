@@ -7,7 +7,7 @@
 ![Status](https://img.shields.io/badge/Stage-Prototype-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-lightgrey.svg)
 
-**Business context:** Entry-level analysts are often asked to **triage shared-mailbox exports** (CSV) for risk—PII mentions, external recipients, blank subjects, etc. This tool shows you can take messy CSVs → **clear, auditable insights** that legal/compliance teams actually use.
+Entry-level analysts are often asked to **triage shared-mailbox exports** (CSV) for risk—PII mentions, external recipients, blank subjects, etc. This tool shows you can take messy CSVs → **clear, auditable insights** that legal/compliance teams actually use.
 
 ---
 
@@ -87,24 +87,6 @@ email-compliance-checker/
 ├─ requirements.txt
 └─ LICENSE
 ```
-
----
-
-## 💡 Why this matters
-
-* **For hiring managers:** Shows you can productize simple compliance checks into a usable tool.
-* **For teams:** Fast triage of risky emails without sending data outside the company.
-* **For you:** Demonstrates UI, data validation, and rule-based analysis in one repo.
-
----
-
-## 🔮 Roadmap (good interview talking points)
-
-* Add **download of flagged results (CSV)**
-* Toggle **custom keyword lists** and external domains
-* **PII patterns** (IBAN, NI number) via regex
-* **Redaction view** for sharing safely with stakeholders
-* **Audit trail export** (JSON/CSV) for evidence packs
 
 ---
 
