@@ -1,39 +1,26 @@
 import streamlit as st
 import pandas as pd
-from utils.parser import run_compliance_checks
+from utils.parser import analyze_email_df
 
+st.set_page_config(page_title="Email Compliance Checker", layout="wide")
 
-st.set_page_config(page_title="Email Audit & Compliance Checker", layout="wide")
-st.title("📧 Email Audit & Compliance Checker")
+st.title("📧 Email Compliance Checker")
+st.markdown("Upload a CSV file with email logs to analyze compliance risks.")
 
+uploaded_file = st.file_uploader("Upload CSV", type=["csv"])
 
-st.markdown("""
-Upload a CSV of email logs to detect common compliance risks in communications.
+if uploaded_file:
+    df = pd.read_csv(uploaded_file)
+    results = analyze_email_df(df)
 
+    st.subheader("⚠️ Flagged Emails")
+    st.dataframe(results[results["Flagged"] == True], use_container_width=True)
 
-**Expected columns:** `From`, `To`, `Subject`, `Timestamp`, `Body`
-""")
-
-
-uploaded = st.file_uploader("Upload email log CSV", type=["csv"])
-
-
-if uploaded:
-  df = pd.read_csv(uploaded)
-flagged, stats = run_compliance_checks(df)
-
-
-st.subheader("⚠️ Compliance Summary")
-for k, v in stats.items():
-  st.metric(k, v)
-
-
-st.subheader("🚨 Flagged Emails")
-st.dataframe(flagged, use_container_width=True)
-
-
-st.download_button("Download flagged emails", flagged.to_csv(index=False), "flagged_emails.csv")
-
-
+    st.subheader("📊 Summary Stats")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Total Emails", len(results))
+    col2.metric("Flagged Emails", results["Flagged"].sum())
+    col3.metric("External Recipients", results["External"].sum())
 else:
-st.info("Upload a file to begin.")
+    st.info("Awaiting CSV upload...")
+
