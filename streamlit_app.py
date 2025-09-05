@@ -25,7 +25,7 @@ flagged, stats = run_compliance_checks(df)
 
 st.subheader("⚠️ Compliance Summary")
 for k, v in stats.items():
-st.metric(k, v)
+  st.metric(k, v)
 
 
 st.subheader("🚨 Flagged Emails")
