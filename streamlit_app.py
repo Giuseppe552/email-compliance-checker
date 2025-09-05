@@ -19,7 +19,7 @@ uploaded = st.file_uploader("Upload email log CSV", type=["csv"])
 
 
 if uploaded:
-df = pd.read_csv(uploaded)
+  df = pd.read_csv(uploaded)
 flagged, stats = run_compliance_checks(df)
 
 
